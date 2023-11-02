@@ -1,0 +1,40 @@
+{
+	"data": [
+		{
+			"product_code": "axis",
+			"product_name": "Axis",
+			"product_type": "pulsa",
+			"icon_url": "https://cdn.mobilepulsa.net/img/logo/pulsa/small/axis.png"
+		},
+		{
+			"product_code": "telkomsel",
+			"product_name": "Telkomsel",
+			"product_type": "pulsa",
+			"icon_url": "https://cdn.mobilepulsa.net/img/logo/pulsa/small/telkomsel.png"
+		},
+		{
+			"product_code": "indosat",
+			"product_name": "Indosat",
+			"product_type": "pulsa",
+			"icon_url": "https://cdn.mobilepulsa.net/img/logo/pulsa/small/indosat.png"
+		},
+		{
+			"product_code": "smart",
+			"product_name": "Smartfren",
+			"product_type": "pulsa",
+			"icon_url": "https://cdn.mobilepulsa.net/img/logo/pulsa/small/smart.png"
+		},
+		{
+			"product_code": "xl",
+			"product_name": "Xl Axiata",
+			"product_type": "pulsa",
+			"icon_url": "https://cdn.mobilepulsa.net/img/logo/pulsa/small/xl.png"
+		},
+		{
+			"product_code": "three",
+			"product_name": "Tri",
+			"product_type": "pulsa",
+			"icon_url": "https://cdn.mobilepulsa.net/img/logo/pulsa/small/three.png"
+		}
+	]
+}

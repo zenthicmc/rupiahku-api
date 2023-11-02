@@ -1,0 +1,34 @@
+{
+	"data": [
+		{
+			"product_code": "dana",
+			"product_name": "Dana",
+			"product_type": "etoll",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/140119034905-Dana-01.png"
+		},
+		{
+			"product_code": "gopay_e-money",
+			"product_name": "Gopay",
+			"product_type": "etoll",
+			"icon_url": "https://cdn.mobilepulsa.net/img/logo/pulsa/small/gopay.png"
+		},
+		{
+			"product_code": "linkaja",
+			"product_name": "Link Aja",
+			"product_type": "etoll",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/120619111757-040319020726-linkaja.png"
+		},
+		{
+			"product_code": "ovo",
+			"product_name": "Ovo",
+			"product_type": "etoll",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/140119040045-ovo-01.png"
+		},
+		{
+			"product_code": "shopee_pay",
+			"product_name": "Shopee Pay",
+			"product_type": "etoll",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/021219030403-shopeepay.jpg"
+		}
+	]
+}

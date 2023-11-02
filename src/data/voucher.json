@@ -1,0 +1,28 @@
+{
+	"data": [
+		{
+			"product_code": "alfamart_voucher",
+			"product_name": "Voucher Alfamart",
+			"product_type": "voucher",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/140119034649-Alfa-01.png"
+		},
+		{
+			"product_code": "transmart_carrefour",
+			"product_name": "Voucher Transmart Carrefour",
+			"product_type": "voucher",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/260319102600-Carrefour-01.png"
+		},
+		{
+			"product_code": "indomaret_voucher",
+			"product_name": "Voucher Indomaret",
+			"product_type": "voucher",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/140119035814-Indomaret-01.png"
+		},
+		{
+			"product_code": "tokopedia",
+			"product_name": "Voucher Tokopedia",
+			"product_type": "voucher",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/090419105719-tokopedia.png"
+		}
+	]
+}

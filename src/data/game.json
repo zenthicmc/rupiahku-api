@@ -1,0 +1,52 @@
+{
+	"data": [
+		{
+			"product_code": "arena_of_valor",
+			"product_name": "Arena of Valor",
+			"product_type": "game",
+			"icon_url": "https://i.ibb.co/hycxv6S/aov.png"
+		},
+		{
+			"product_code": "call_of_duty_mobile",
+			"product_name": "Call of Duty Mobile",
+			"product_type": "game",
+			"icon_url": "https://i.ibb.co/zh6PFH6/Call-of-Duty-Mobile-Logo.png"
+		},
+		{
+			"product_code": "pubg_mobile",
+			"product_name": "Pubg Mobile",
+			"product_type": "game",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/270819022706-pubg-mobile.png"
+		},
+		{
+			"product_code": "free_fire",
+			"product_name": "Free Fire",
+			"product_type": "game",
+			"icon_url": "https://i.ibb.co/s3jmDNh/Logo-of-Garena-Free-Fire.png"
+		},
+		{
+			"product_code": "mobile_legend",
+			"product_name": "Mobile Legend",
+			"product_type": "game",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/140119035948-Moba-01.png"
+		},
+		{
+			"product_code": "google_play_indonesia",
+			"product_name": "Google Play",
+			"product_type": "game",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/140119021513-gplay.png"
+		},
+		{
+			"product_code": "steam_sea",
+			"product_name": "Steam",
+			"product_type": "game",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/140119040218-Steam%20SEA-01.png"
+		},
+		{
+			"product_code": "razer_pin",
+			"product_name": "Razer Pin",
+			"product_type": "game",
+			"icon_url": "https://cdn.mobilepulsa.net/img/product/operator_list/140119040145-Razer-01.png"
+		}
+	]
+}
