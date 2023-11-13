@@ -1,5 +1,5 @@
 const response400 = (res, msg) => {
-	return res.status(400).json({
+	return res.status(200).json({
 		success: false,
 		code: 400,
 		message: msg ? msg : 'Bad Request'
@@ -7,7 +7,7 @@ const response400 = (res, msg) => {
 }
 
 const response401 = (res, msg) => {
-	return res.status(401).json({
+	return res.status(200).json({
 		success: false,
 		code: 401, 
 		message: msg ? msg : 'Unauthorized',
@@ -16,7 +16,7 @@ const response401 = (res, msg) => {
 }
 
 const response403 = (res, msg) => {
-	return res.status(403).json({
+	return res.status(200).json({
 		success: false,
 		code: 403,
 		message: msg ? msg : 'Forbidden'
@@ -24,7 +24,7 @@ const response403 = (res, msg) => {
 }
 
 const response500 = (res, msg) => {
-	return res.status(500).json({
+	return res.status(200).json({
 		success: false,
 		code: 500,
 		message: msg ? msg : 'Internal Server Error'
@@ -32,7 +32,7 @@ const response500 = (res, msg) => {
 }
 
 const response404 = (res, msg) => {
-	return res.status(404).json({
+	return res.status(200).json({
 		success: false,
 		code: 404,
 		message: msg ? msg : 'Not Found'
