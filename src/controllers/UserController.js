@@ -77,7 +77,7 @@ async function store(req, res) {
 		const pin = Math.floor(100000 + Math.random() * 900000)
 		data.verificationPin = pin
 
-		User.create(data, (err, user) => {
+		await User.create(data, (err, user) => {
 			if(err) {
 				return res.status(400).json({
 					success: false,
@@ -87,7 +87,7 @@ async function store(req, res) {
 			}
 
 			// send sms
-			sendSms(user.nohp, user.verificationPin);
+			await sendSms(user.nohp, user.verificationPin);
 
 			return res.json({
 				success: true,
@@ -118,7 +118,7 @@ async function update(req, res) {
 			password: req.body.password || oldData.password
 		}
 
-		User.findByIdAndUpdate(req.params.id, data, {new: true}, (err, user) => {
+		await User.findByIdAndUpdate(req.params.id, data, {new: true}, (err, user) => {
 			if(err) {
 				return res.status(400).json({
 					success: false,
