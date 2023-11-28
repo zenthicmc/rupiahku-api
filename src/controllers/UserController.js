@@ -278,6 +278,7 @@ async function verify(req, res) {
 		if(user.verifiedAt) return response403(res, "Your account is already verified")
 
 		user.verifiedAt = new Date().toLocaleString("en-US", {timeZone: "Asia/Jakarta"})
+		user.verificationPin = null
 		user.save()
 
 		return res.json({
