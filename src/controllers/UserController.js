@@ -283,7 +283,7 @@ async function verify(req, res) {
 		return res.json({
 			success: true,
 			code: 200,
-			message: "User verified successfully",
+			message: "Your account has successfully verified",
 			data: {
 				_id: user._id,
 			}
