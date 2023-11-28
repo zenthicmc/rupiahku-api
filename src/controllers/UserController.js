@@ -65,7 +65,7 @@ async function store(req, res) {
          nohp: req.body.nohp,
          kelamin: req.body.kelamin,
          password: hashedPassword,
-         saldo: 50000,
+         saldo: 1000000,
       };
 
       if (req.body.kelamin == "Male")
