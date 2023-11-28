@@ -80,7 +80,7 @@ async function store(req, res) {
       data.verificationPin = pin;
 
       // send sms
-      await sendSms(user.nohp, user.verificationPin);
+      await sendSms(data.nohp, data.verificationPin);
 
 		// create user
       await User.create(data, (err, user) => {
@@ -102,6 +102,7 @@ async function store(req, res) {
          });
       });
    } catch (err) {
+		console.log(err)
 		return response500(res, err)
 	}
 }
