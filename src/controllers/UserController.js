@@ -102,7 +102,7 @@ async function store(req, res) {
          });
       });
    } catch (err) {
-		return response500(res)
+		return response500(res, err)
 	}
 }
 
