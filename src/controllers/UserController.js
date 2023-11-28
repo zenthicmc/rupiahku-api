@@ -49,58 +49,59 @@ async function detail(req, res) {
 
 async function store(req, res) {
 	try {
-		const errors = validationResult(req);
-			if (!errors.isEmpty()) {
-				return res.status(400).json({ 
-					success: false,
-					code: 400,
-					errors: errors.array()
-				});
-			}
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+         return res.status(400).json({
+            success: false,
+            code: 400,
+            errors: errors.array(),
+         });
+      }
 
-		const hashedPassword = await bcrypt.hash(req.body.password, 10)
-		const data = {
-			name: req.body.name,
-			email: req.body.email,
-			nohp: req.body.nohp,
-			kelamin: req.body.kelamin,
-			password: hashedPassword,
-			saldo: 50000,
-		}
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const data = {
+         name: req.body.name,
+         email: req.body.email,
+         nohp: req.body.nohp,
+         kelamin: req.body.kelamin,
+         password: hashedPassword,
+         saldo: 50000,
+      };
 
-		if(req.body.kelamin == "Male") data.image =
-         "https://cdn.tokoqu.io/image/9febb626-a04c-4661-99ac-45a00d8d7f07.webp";
-		else data.image =
-         "https://cdn.tokoqu.io/image/ca93faa9-fb82-4945-b1f8-02001a00b7a6.webp";
+      if (req.body.kelamin == "Male")
+         data.image =
+            "https://cdn.tokoqu.io/image/9febb626-a04c-4661-99ac-45a00d8d7f07.webp";
+      else
+         data.image =
+            "https://cdn.tokoqu.io/image/ca93faa9-fb82-4945-b1f8-02001a00b7a6.webp";
 
-		// generate 6 digit random number
-		const pin = Math.floor(100000 + Math.random() * 900000)
-		data.verificationPin = pin
+      // generate 6 digit random number
+      const pin = Math.floor(100000 + Math.random() * 900000);
+      data.verificationPin = pin;
 
-		await User.create(data, (err, user) => {
-			if(err) {
-				return res.status(400).json({
-					success: false,
-					code: 400,
-					message: err.message
-				})
-			}
+      // send sms
+      await sendSms(user.nohp, user.verificationPin);
 
-			// send sms
-			await sendSms(user.nohp, user.verificationPin);
+		// create user
+      await User.create(data, (err, user) => {
+         if (err) {
+            return res.status(400).json({
+               success: false,
+               code: 400,
+               message: err.message,
+            });
+         }
 
-			return res.json({
-				success: true,
-				code: 200,
-				message: "User created successfully",
-				data: {
-					_id: user._id,
-				}
-			})
-		})
-		
-
-	} catch (err) {
+         return res.json({
+            success: true,
+            code: 200,
+            message: "User created successfully",
+            data: {
+               _id: user._id,
+            },
+         });
+      });
+   } catch (err) {
 		return response500(res)
 	}
 }
