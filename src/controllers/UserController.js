@@ -51,7 +51,7 @@ async function store(req, res) {
 	try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-         return res.status(400).json({
+         return res.status(200).json({
             success: false,
             code: 400,
             errors: errors.array(),
@@ -85,7 +85,7 @@ async function store(req, res) {
 		// create user
       await User.create(data, (err, user) => {
          if (err) {
-            return res.status(400).json({
+            return res.status(200).json({
                success: false,
                code: 400,
                message: err.message,
@@ -121,11 +121,11 @@ async function update(req, res) {
 
 		await User.findByIdAndUpdate(req.params.id, data, {new: true}, (err, user) => {
 			if(err) {
-				return res.status(400).json({
-					success: false,
-					code: 400,
-					message: err.message
-				})
+				return res.status(200).json({
+               success: false,
+               code: 400,
+               message: err.message,
+            });
 			}
 
 			return res.json({
