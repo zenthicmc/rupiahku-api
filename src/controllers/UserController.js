@@ -11,7 +11,7 @@ const decodeJwt = require('../helpers/decodeJwt')
 const axios = require('axios')
 const hmacSHA256 = require('crypto-js/hmac-sha256'); 
 const hex = require('crypto-js/enc-hex');
-const sendSms = require('../helpers/sendSms')
+const sendSms = require("../helpers/sendSms");
 
 async function show(req, res) {
 	try {
@@ -68,8 +68,14 @@ async function store(req, res) {
 			saldo: 50000,
 		}
 
-		if(req.body.kelamin == "Male") data.image = "https://i.ibb.co/BT3DC0q/photo-Profile.webp"
-		else data.image = "https://i.ibb.co/3C0yHkh/female-removebg-preview.webp"
+		if(req.body.kelamin == "Male") data.image =
+         "https://cdn.tokoqu.io/image/9febb626-a04c-4661-99ac-45a00d8d7f07.webp";
+		else data.image =
+         "https://cdn.tokoqu.io/image/ca93faa9-fb82-4945-b1f8-02001a00b7a6.webp";
+
+		// generate 6 digit random number
+		const pin = Math.floor(100000 + Math.random() * 900000)
+		data.verificationPin = pin
 
 		User.create(data, (err, user) => {
 			if(err) {
@@ -81,7 +87,8 @@ async function store(req, res) {
 			}
 
 			// send sms
-			sendSms()
+			sendSms(user.nohp, user.verificationPin);
+
 			return res.json({
 				success: true,
 				code: 200,
@@ -258,6 +265,34 @@ async function getUserByPhone(req, res) {
 	}
 }
 
+async function verify(req, res) {
+	try {
+		const user = await User.findOne({nohp: req.body.nohp})
+		if(!user) return response404(res, "User with that phone is not found")
+
+		if (user.verificationPin != req.body.verificationPin)
+         return response403(res, "Your verification code is not valid");
+
+		// check if user already verified
+		if(user.verifiedAt) return response403(res, "Your account is already verified")
+
+		user.verifiedAt = new Date().toLocaleString("en-US", {timeZone: "Asia/Jakarta"})
+		user.save()
+
+		return res.json({
+			success: true,
+			code: 200,
+			message: "User verified successfully",
+			data: {
+				_id: user._id,
+			}
+		})
+
+	} catch (err) {
+		return response500(res)
+	}
+}
+
 module.exports = {
 	show,
 	detail,
@@ -267,5 +302,6 @@ module.exports = {
 	getprofile,
 	getStats,
 	recentUser,
-	getUserByPhone
+	getUserByPhone,
+	verify
 }

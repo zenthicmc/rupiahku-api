@@ -37,17 +37,20 @@ const UserSchema = new mongoose.Schema({
 	},
 	image: {
 		type: String,
-		default: 'https://i.ibb.co/BT3DC0q/photo-Profile.webp',
-	},
-	createdAt: {
-		type: Date,
-		default: new Date().toLocaleString("en-US", {timeZone: "Asia/Jakarta"}),
+		default: 'https://cdn.tokoqu.io/image/9febb626-a04c-4661-99ac-45a00d8d7f07.webp',
 	},
 	token: {
 		type: String,
 	},
 	verificationPin: {
 		type: String,
+	},
+	verifiedAt: {
+		type: Date,
+	},
+	createdAt: {
+		type: Date,
+		default: new Date().toLocaleString("en-US", {timeZone: "Asia/Jakarta"}),
 	},
 })
 

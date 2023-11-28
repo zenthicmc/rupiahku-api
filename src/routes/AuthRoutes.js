@@ -9,5 +9,6 @@ const CreateUserValidator = require('../validators/CreateUserValidator')
 
 router.post('/login', LoginValidator, authController.login)
 router.post('/register', CreateUserValidator, userController.store)
+router.post("/verify", userController.verify);
 
 module.exports = router
