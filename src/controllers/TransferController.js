@@ -42,6 +42,7 @@ async function store(req, res) {
 
 		if(!receiver) return response404(res, "Penerima tidak ditemukan")
 		if(user.saldo < req.body.amount) return response400(res, "Saldo anda tidak cukup")
+		if(user.nohp == receiver.nohp) return response400(res, "Tidak bisa transfer ke akun sendiri")
 
 		data.receiver_id = receiver._id
 		if(req.body.catatan) data.catatan = req.body.catatan
