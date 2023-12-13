@@ -11,7 +11,7 @@ const decodeJwt = require('../helpers/decodeJwt')
 const axios = require('axios')
 const hmacSHA256 = require('crypto-js/hmac-sha256'); 
 const hex = require('crypto-js/enc-hex');
-const sendSms = require("../helpers/sendSms");
+const sendEmail = require('../helpers/sendEmail')
 
 async function show(req, res) {
 	try {
@@ -80,7 +80,7 @@ async function store(req, res) {
       data.verificationPin = pin;
 
       // send sms
-      await sendSms(data.nohp, data.verificationPin);
+      await sendEmail(data.name, data.email, data.verificationPin);
 
 		// create user
       await User.create(data, (err, user) => {

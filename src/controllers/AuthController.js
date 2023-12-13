@@ -32,6 +32,11 @@ async function login(req, res) {
 			return response401(res, 'Wrong password');
 		}
 
+		// check if account is verified
+		if(!user.verifiedAt) {
+			return response401(res, 'Your account is not verified');
+		}
+
 		const payload = {
 			iss: 'Dompetku',
 			sub: user._id,
