@@ -25,8 +25,9 @@ app.use(bodyParser.urlencoded({
    extended: true
 }))
 
+const whitelist = ['http://localhost:3000', 'https://rupiahku.pro']
 app.use(cors({
-   origin: "*", // allow all origins
+   origin: whitelist
    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
    allowedHeaders: "Content-Type, Authorization, X-Requested-With, Accept"
 }))
