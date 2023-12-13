@@ -61,7 +61,7 @@ async function handle(req, res) {
 
 					const amount = result.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
-					const notification = Notification.create({
+					await Notification.create({
                   user_id: user._id,
                   receiver_id: user._id,
                   title: `Deposit Berhasil`,
@@ -79,7 +79,7 @@ async function handle(req, res) {
 					result.status = 'Expired'
 					result.save()
 
-					const notification = Notification.create({
+					await Notification.create({
                   user_id: user._id,
                   receiver_id: user._id,
                   title: `Pembayaran Kadaluarsa`,
@@ -93,7 +93,7 @@ async function handle(req, res) {
 					result.status = 'Failed'
 					result.save()
 
-					const notification = Notification.create({
+					await Notification.create({
                   user_id: user._id,
                   receiver_id: user._id,
                   title: `Pembayaran Gagal`,

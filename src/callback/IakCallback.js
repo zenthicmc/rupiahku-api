@@ -34,7 +34,7 @@ async function handle(req, res) {
 			user.save()
 
 			const amount = transaction.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-			const notification = Notification.create({
+			await Notification.create({
             user_id: user._id,
             receiver_id: user._id,
             title: `Pembayaran ${capitalize(transaction.type)} Berhasil`,
@@ -47,7 +47,7 @@ async function handle(req, res) {
 			transaction.status = 'Failed'
 			transaction.save()
 
-			const notification = Notification.create({
+			await Notification.create({
             user_id: user._id,
             receiver_id: user._id,
             title: `Pembayaran ${capitalize(transaction.type)} Gagal`,
