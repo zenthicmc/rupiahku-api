@@ -26,9 +26,12 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(cors({
-   origin: "*",
+   origin: false,
    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
    allowedHeaders: "Content-Type, Authorization, X-Requested-With, Accept"
+   // disable same origin policy
+   // https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe
+
 }))
 
 // Routes
