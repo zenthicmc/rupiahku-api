@@ -62,11 +62,13 @@ async function handle(req, res) {
 					const amount = result.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
 					const notification = Notification.create({
-						user_id: user._id,
-						receiver_id: user._id,
-						title: `Deposit Berhasil`,
-						desc: `Deposit anda sebesar Rp ${amount} telah berhasil diverifikasi.`,
-					})
+                  user_id: user._id,
+                  receiver_id: user._id,
+                  title: `Deposit Berhasil`,
+                  desc: `Deposit anda sebesar Rp ${amount} telah berhasil diverifikasi.`,
+                  icon: "https://cdn.tokoqu.io/image/success.png",
+                  icon_dark: "https://cdn.tokoqu.io/image/dark-success.png",
+               });
 					
 					break;
 				case 'UNPAID':
@@ -76,10 +78,29 @@ async function handle(req, res) {
 				case 'EXPIRED':
 					result.status = 'Expired'
 					result.save()
+
+					const notification = Notification.create({
+                  user_id: user._id,
+                  receiver_id: user._id,
+                  title: `Pembayaran Kadaluarsa`,
+                  desc: `Pembayaran untuk deposit anda sebesar Rp ${amount} telah kadaluarsa.`,
+                  icon: "https://cdn.tokoqu.io/image/pending.png",
+                  icon_dark: "https://cdn.tokoqu.io/image/dark-pending.png",
+               });
+					
 					break;
 				case 'FAILED':
 					result.status = 'Failed'
 					result.save()
+
+					const notification = Notification.create({
+                  user_id: user._id,
+                  receiver_id: user._id,
+                  title: `Pembayaran Gagal`,
+                  desc: `Pembayaran untuk deposit anda sebesar Rp ${amount} gagal.`,
+                  icon: "https://cdn.tokoqu.io/image/cancel.png",
+                  icon_dark: "https://cdn.tokoqu.io/image/dark-cancel.png",
+               });
 					break;
 				default:
 					return res.status(400).json({

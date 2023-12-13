@@ -11,6 +11,10 @@ const hmacSHA256 = require('crypto-js/hmac-sha256');
 const hex = require('crypto-js/enc-hex');
 const { response400, response403, response404, response500 } = require('../helpers/response')
 
+const capitalize = (text) => {
+	return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
 async function handle(req, res) {
 	try {
 		const reference = req.body.data.ref_id
@@ -31,15 +35,26 @@ async function handle(req, res) {
 
 			const amount = transaction.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 			const notification = Notification.create({
-				user_id: user._id,
-				receiver_id: user._id,
-				title: `Topup Berhasil`,
-				desc: `Topup anda sebesar Rp ${amount} telah berhasil diverifikasi.`,
-			})
+            user_id: user._id,
+            receiver_id: user._id,
+            title: `Pembayaran ${capitalize(transaction.type)} Berhasil`,
+            desc: `Pembayaran ${transaction.type} anda sebesar Rp ${amount} telah berhasil diverifikasi.`,
+            icon: "https://cdn.tokoqu.io/image/success.png",
+            icon_dark: "https://cdn.tokoqu.io/image/dark-success.png",
+         });
 
 		} else {
 			transaction.status = 'Failed'
 			transaction.save()
+
+			const notification = Notification.create({
+            user_id: user._id,
+            receiver_id: user._id,
+            title: `Pembayaran ${capitalize(transaction.type)} Gagal`,
+            desc: `Pembayaran ${transaction.type} anda sebesar Rp ${amount} gagal dilakukan.`,
+            icon: "https://cdn.tokoqu.io/image/cancel.png",
+            icon_dark: "https://cdn.tokoqu.io/image/dark-cancel.png",
+         });
 		}
 	}
 	catch (err) {

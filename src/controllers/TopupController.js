@@ -57,14 +57,14 @@ async function store(req, res) {
             icon_dark: "https://cdn.tokoqu.io/image/dark-pulsa.png",
          },
          {
-            type: "tarik-tunai",
-				icon: "https://cdn.tokoqu.io/image/tarik-tunai.png",
-				icon_dark: "https://cdn.tokoqu.io/image/dark-tarik-tunai.png",
-			},
-			{
-				type: "voucher",
-				icon: "https://cdn.tokoqu.io/image/voucher.png",
-				icon_dark: "https://cdn.tokoqu.io/image/dark-voucher.png",
+            type: "tagihan",
+            icon: "https://cdn.tokoqu.io/image/tagihan.png",
+            icon_dark: "https://cdn.tokoqu.io/image/dark-tagihan.png",
+         },
+         {
+            type: "voucher",
+            icon: "https://cdn.tokoqu.io/image/voucher.png",
+            icon_dark: "https://cdn.tokoqu.io/image/dark-voucher.png",
          },
       ];
 
