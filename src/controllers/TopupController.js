@@ -28,41 +28,49 @@ async function store(req, res) {
 		const icons = [
          {
             type: "etoll",
+						type_name: "E-Money",
             icon: "https://cdn.tokoqu.io/image/e-wallet.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-e-wallet.png",
          },
          {
             type: "game",
+						type_name: "Game",
             icon: "https://cdn.tokoqu.io/image/game.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-game.png",
          },
          {
             type: "data",
+						type_name: "Internet",
             icon: "https://cdn.tokoqu.io/image/internet.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-internet.png",
          },
          {
             type: "pln",
+						type_name: "Listrik",
             icon: "https://cdn.tokoqu.io/image/pln.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-pln.png",
          },
          {
             type: "others",
+						type_name: "Lainnya",
             icon: "https://cdn.tokoqu.io/image/others.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-others.png",
          },
          {
             type: "pulsa",
+						type_name: "Pulsa",
             icon: "https://cdn.tokoqu.io/image/pulsa.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-pulsa.png",
          },
          {
             type: "tagihan",
+						type_name: "Tagihan",
             icon: "https://cdn.tokoqu.io/image/tagihan.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-tagihan.png",
          },
          {
             type: "voucher",
+						type_name: "Voucher",
             icon: "https://cdn.tokoqu.io/image/voucher.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-voucher.png",
          },
@@ -72,7 +80,7 @@ async function store(req, res) {
 		const data = {
          user_id: token.sub,
          receiver_id: token.sub,
-         type: req.body.type,
+         type: selected.type_name,
          icon: selected.icon,
          icon_dark: selected.icon_dark,
       };
