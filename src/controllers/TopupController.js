@@ -27,7 +27,7 @@ async function store(req, res) {
 
 		const icons = [
          {
-            type: "e-wallet",
+            type: "etoll",
             icon: "https://cdn.tokoqu.io/image/e-wallet.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-e-wallet.png",
          },
@@ -37,7 +37,7 @@ async function store(req, res) {
             icon_dark: "https://cdn.tokoqu.io/image/dark-game.png",
          },
          {
-            type: "internet",
+            type: "data",
             icon: "https://cdn.tokoqu.io/image/internet.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-internet.png",
          },
@@ -118,6 +118,7 @@ async function store(req, res) {
 		}
 
 	} catch (err) {
+		console.log(err)
 		return response500(res, err)
 	}
 }
