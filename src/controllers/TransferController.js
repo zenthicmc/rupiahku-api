@@ -12,6 +12,7 @@ const axios = require('axios')
 const hmacSHA256 = require('crypto-js/hmac-sha256'); 
 const hex = require('crypto-js/enc-hex');
 const Notification = require('../models/Notification')
+const moment = require("moment");
 
 async function store(req, res) {
 	try {
@@ -35,6 +36,7 @@ async function store(req, res) {
          type: "Transfer",
          icon: "https://cdn.tokoqu.io/image/transfer.png",
 			icon_dark: "https://cdn.tokoqu.io/image/dark-transfer.png",
+			createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
       };
 
 		const user = await User.findById(token.sub)
@@ -64,6 +66,7 @@ async function store(req, res) {
 				desc: `Anda menerima transfer sebesar Rp ${amount} dari ${user.name}.`,
 				icon: "https://cdn.tokoqu.io/image/success.png",
 				icon_dark: "https://cdn.tokoqu.io/image/dark-success.png",
+				createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
 			})
 
 			return res.json({

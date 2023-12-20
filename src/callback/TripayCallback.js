@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken');
 const hmacSHA256 = require('crypto-js/hmac-sha256'); 
 const hex = require('crypto-js/enc-hex');
 const { response400, response403, response404, response500 } = require('../helpers/response')
+const moment = require("moment");
 
 async function handle(req, res) {
 	try {
@@ -68,6 +69,7 @@ async function handle(req, res) {
                   desc: `Deposit anda sebesar Rp ${amount} telah berhasil diverifikasi.`,
                   icon: "https://cdn.tokoqu.io/image/success.png",
                   icon_dark: "https://cdn.tokoqu.io/image/dark-success.png",
+						createAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
                });
 					
 					break;
@@ -86,6 +88,7 @@ async function handle(req, res) {
                   desc: `Pembayaran untuk deposit anda sebesar Rp ${amount} telah kadaluarsa.`,
                   icon: "https://cdn.tokoqu.io/image/pending.png",
                   icon_dark: "https://cdn.tokoqu.io/image/dark-pending.png",
+						createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
                });
 					
 					break;
@@ -100,6 +103,7 @@ async function handle(req, res) {
                   desc: `Pembayaran untuk deposit anda sebesar Rp ${amount} gagal.`,
                   icon: "https://cdn.tokoqu.io/image/cancel.png",
                   icon_dark: "https://cdn.tokoqu.io/image/dark-cancel.png",
+						createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
                });
 					break;
 				default:

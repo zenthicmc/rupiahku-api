@@ -11,6 +11,7 @@ const decodeJwt = require('../helpers/decodeJwt')
 const axios = require('axios')
 const hmacSHA256 = require('crypto-js/hmac-sha256'); 
 const hex = require('crypto-js/enc-hex');
+const moment = require("moment");
 
 async function store(req, res) {
 	try {
@@ -33,7 +34,8 @@ async function store(req, res) {
          amount: req.body.amount,
          type: "Deposit",
          icon: "https://cdn.tokoqu.io/image/deposit.png",
-			icon_dark: "https://cdn.tokoqu.io/image/dark-deposit.png",
+         icon_dark: "https://cdn.tokoqu.io/image/dark-deposit.png",
+         createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
       };
 
 		try {

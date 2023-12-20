@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken');
 const hmacSHA256 = require('crypto-js/hmac-sha256'); 
 const hex = require('crypto-js/enc-hex');
 const { response400, response403, response404, response500 } = require('../helpers/response')
+const moment = require("moment");
 
 const capitalize = (text) => {
 	return text.charAt(0).toUpperCase() + text.slice(1)
@@ -41,6 +42,7 @@ async function handle(req, res) {
             desc: `Pembayaran ${transaction.type} anda sebesar Rp ${amount} telah berhasil diverifikasi.`,
             icon: "https://cdn.tokoqu.io/image/success.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-success.png",
+				createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
          });
 
 		} else {
@@ -54,6 +56,7 @@ async function handle(req, res) {
             desc: `Pembayaran ${transaction.type} anda sebesar Rp ${amount} gagal dilakukan.`,
             icon: "https://cdn.tokoqu.io/image/cancel.png",
             icon_dark: "https://cdn.tokoqu.io/image/dark-cancel.png",
+				createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
          });
 		}
 	}

@@ -1,6 +1,7 @@
 "use strict"
 
 const mongoose = require('mongoose')
+const moment = require("moment");
 
 const NotificationSchema = new mongoose.Schema({
    user_id: {
@@ -28,8 +29,8 @@ const NotificationSchema = new mongoose.Schema({
       type: String,
    },
    createdAt: {
-      type: Date,
-      default: new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" }),
+      type: String,
+      default: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
    },
 });
 
