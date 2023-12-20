@@ -20,7 +20,7 @@ async function verify(req, res) {
       });
 	} catch (error) {
 		return res.json({
-			success: false,
+			success: true,
 			message: 'Captcha invalid'
 		})
 	}
