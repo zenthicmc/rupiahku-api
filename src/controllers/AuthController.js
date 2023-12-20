@@ -38,7 +38,7 @@ async function login(req, res) {
 		}
 
 		const payload = {
-			iss: 'Dompetku',
+			iss: 'Rupiahku',
 			sub: user._id,
 			aud: ip,
 			exp: new Date().setDate(new Date().getDate() + 14),
