@@ -14,17 +14,10 @@ async function verify(req, res) {
 			'remoteip': ip,
 		})
 
-		if(result.data.success) {
-			return res.json({
-				success: true,
-				message: 'Captcha valid'
-			})
-		}
-
 		return res.json({
-			success: false,
-			message: 'Captcha invalid'
-		})
+         success: true,
+         message: "Captcha valid",
+      });
 	} catch (error) {
 		return res.json({
 			success: false,
