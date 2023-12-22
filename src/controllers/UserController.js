@@ -108,6 +108,15 @@ async function store(req, res) {
 
 async function updateProfile(req, res) {
 	try {
+		const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+         return res.status(200).json({
+            success: false,
+            code: 400,
+            errors: errors.array(),
+         });
+      }
+		
 		const token = decodeJwt(req);
       const user = await User.findById(token.sub);
 
