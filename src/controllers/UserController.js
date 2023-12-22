@@ -116,7 +116,7 @@ async function updateProfile(req, res) {
             errors: errors.array(),
          });
       }
-		
+
 		const token = decodeJwt(req);
       const user = await User.findById(token.sub);
 
