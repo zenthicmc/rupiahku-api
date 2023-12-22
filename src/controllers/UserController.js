@@ -106,40 +106,90 @@ async function store(req, res) {
 	}
 }
 
-async function update(req, res) {
+async function updateProfile(req, res) {
 	try {
-		const oldData = await User.findById(req.params.id)
+		const token = decodeJwt(req);
+      const user = await User.findById(token.sub);
 
 		const data = {
 			name: req.body.name || oldData.name,
 			email: req.body.email || oldData.email,
 			nohp: req.body.nohp 	|| oldData.nohp,
-			image: req.body.image || oldData.image,
-			kelamin: req.body.kelamin || oldData.kelamin,
-			password: req.body.password || oldData.password
 		}
 
-		await User.findByIdAndUpdate(req.params.id, data, {new: true}, (err, user) => {
-			if(err) {
-				return res.status(200).json({
-               success: false,
-               code: 400,
-               message: err.message,
-            });
+		await user.updateOne(data)
+		return res.json({
+			success: true,
+			code: 200,
+			message: "Profile updated successfully",
+			data: {
+				_id: user._id
 			}
-
-			return res.json({
-				success: true,
-				code: 200,
-				message: "User updated successfully",
-				data: {
-					_id: user._id,
-				}
-			})
 		})
-
 	} catch (err) {
-		return response404(res)
+		return response500(res)
+	}
+}
+
+async function updateImage(req, res) {
+	try {
+		const token = decodeJwt(req);
+		const user = await User.findById(token.sub);
+
+		const data = {
+			image: req.body.image
+		}
+
+		await user.updateOne(data)
+		return res.json({
+			success: true,
+			code: 200,
+			message: "Profile Image updated successfully",
+			data: {
+				_id: user._id
+			}
+		})
+	}
+	catch (err) {
+		return response500(res)
+	}
+}
+
+async function updatePassword(req, res) {
+	try {
+		const token = decodeJwt(req);
+		const user = await User.findById(token.sub);
+
+		const data = {
+			oldPassword: req.body.oldPassword,
+			password: req.body.password,
+			confirmPassword: req.body.confirmPassword
+		}
+
+		// check old password
+		const isMatch = await bcrypt.compare(data.oldPassword, user.password);
+		if (!isMatch) return response403(res, "Your old password is not valid");
+
+		// check password and confirm password
+		if (data.password != data.confirmPassword) return response403(res, "Your password and confirm password is not match");
+
+		// hash new password
+		const hashedPassword = await bcrypt.hash(data.password, 10);
+
+		// update password
+		await user.updateOne({ password: hashedPassword });
+
+		return res.json({
+			success: true,
+			code: 200,
+			message: "Password updated successfully",
+			data: {
+				_id: user._id,
+			},
+		});
+	}
+	catch (err) {
+		return response500(res)
 	}
 }
 
@@ -210,7 +260,6 @@ async function getStats(req, res) {
 				uangKeluar: totalUangKeluar
 			}
 		})
-
 	} catch (err) {
 		return console.log(err)
 	}
@@ -243,7 +292,6 @@ async function recentUser(req, res) {
 			message: "Recents user fetched successfully",
 			data: newUsers
 		})
-
 	} catch (err) {
 		return response500(res)
 	}
@@ -296,14 +344,16 @@ async function verify(req, res) {
 }
 
 module.exports = {
-	show,
-	detail,
-	store,
-	update,
-	destroy,
-	getprofile,
-	getStats,
-	recentUser,
-	getUserByPhone,
-	verify
-}
+   show,
+   detail,
+   store,
+   destroy,
+   getprofile,
+   getStats,
+   recentUser,
+   getUserByPhone,
+   verify,
+   updateProfile,
+   updateImage,
+   updatePassword,
+};

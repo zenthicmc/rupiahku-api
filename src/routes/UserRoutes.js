@@ -13,7 +13,11 @@ router.get('/phone/:phone', userController.getUserByPhone)
 router.get('/', userController.show)
 router.get('/:id', userController.detail)
 router.post('/', CreateUserValidator, userController.store)
-router.put('/:id', userController.update)
 router.delete('/:id', userController.destroy)
+
+// update profile routes
+router.put("/updateProfile", userController.updateProfile);
+router.put("/updateImage", userController.updateImage);
+router.put("/updatePassword", userController.updatePassword);
 
 module.exports = router
