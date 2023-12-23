@@ -352,6 +352,27 @@ async function verify(req, res) {
 	}
 }
 
+async function logout(req, res) {
+	try {
+		const token = decodeJwt(req)
+		const user = await User.findById(token.sub)
+
+		user.token = null
+		user.save()
+
+		return res.json({
+			success: true,
+			code: 200,
+			message: "Logout successfully",
+			data: {
+				_id: user._id
+			}
+		})
+	} catch (err) {
+		return response500(res)
+	}
+}
+
 module.exports = {
    show,
    detail,
@@ -365,4 +386,5 @@ module.exports = {
    updateProfile,
    updateImage,
    updatePassword,
+	logout
 };

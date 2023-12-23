@@ -21,4 +21,7 @@ router.put("/updateProfile", UpdateProfileValidator, userController.updateProfil
 router.put("/updateImage", userController.updateImage);
 router.put("/updatePassword", userController.updatePassword);
 
+// logout
+router.post("/logout", userController.logout);
+
 module.exports = router

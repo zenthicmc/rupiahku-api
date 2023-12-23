@@ -19,6 +19,9 @@ async function JwtMiddleware (req, res, next) {
 		});
 		if(!user) return response401(res);
 
+		// verification step 3
+		if(user.token !== token) return response401(res);
+
 		next();
 		
 	} catch (err) {
