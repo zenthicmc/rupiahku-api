@@ -18,6 +18,7 @@ const game = require('../data/game.json')
 const voucher = require('../data/voucher.json')
 const emoney = require('../data/emoney.json')
 const pulsa = require('../data/pulsa.json')
+const tagihan = require('../data/tagihan.json')
 
 async function show(req, res) {
 	try {
@@ -29,6 +30,7 @@ async function show(req, res) {
 		else if(req.params.id == "voucher") data = voucher.data
 		else if(req.params.id == "emoney") data = emoney.data
 		else if(req.params.id == "pulsa") data = pulsa.data
+		else if(req.params.id == "tagihan") data = tagihan.data
 		else return response404(res, "Product type not found")
 
 		return res.status(200).json({
