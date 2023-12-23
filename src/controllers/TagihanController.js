@@ -19,6 +19,40 @@ const hex = require("crypto-js/enc-hex");
 const MD5 = require("crypto-js/md5");
 const moment = require("moment");
 
+async function detail(req, res) {
+   try {
+      const api_key = process.env.IAK_API_KEY;
+      const api_user = process.env.IAK_USERNAME;
+      const signCheck = MD5(api_user + api_key + "cs").toString();
+
+      // get data
+      const data = await axios.post(
+         "https://testpostpaid.mobilepulsa.net/api/v1/bill/check/",
+         {
+            commands: "checkstatus",
+            ref_id: req.body.ref_id,
+            username: api_user,
+            sign: signCheck,
+         },
+         {
+            headers: {
+               "Content-Type": "application/json",
+               "Accept-Encoding": "gzip,deflate,compress",
+            },
+         }
+      );
+
+      return res.status(200).json({
+         success: true,
+         code: 200,
+         message: "Tagihan fetched successfully",
+         data: data.data.data,
+      });
+   } catch (err) {
+      return response500(res, err);
+   }
+}
+
 async function inquiry(req, res) {
    try {
       const token = decodeJwt(req);
@@ -164,6 +198,7 @@ async function pay(req, res) {
 }
 
 module.exports = {
+   detail,
    inquiry,
 	pay
 };
