@@ -29,11 +29,7 @@ async function handle(req, res) {
 		if(status == 1) {
 			transaction.status = 'Success'
 			transaction.save()
-
-			const user = await User.findOne({ _id: transaction.user_id })
-			user.saldo = user.saldo - transaction.amount
-			user.save()
-
+			
 			const amount = transaction.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 			await Notification.create({
             user_id: user._id,

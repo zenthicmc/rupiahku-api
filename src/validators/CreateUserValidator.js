@@ -8,14 +8,6 @@ const CreateUserValidator = [
       .isLength({ min: 3 })
       .withMessage("Name must be at least 3 characters long"),
 
-	body("name").custom(async (value) => {
-		const user = await User.findOne({ name: value });
-		if (user) {
-			throw new Error("Name already exists");
-		}
-		return true;
-	}),
-
    body("email")
       .notEmpty()
       .withMessage("Email is required")
