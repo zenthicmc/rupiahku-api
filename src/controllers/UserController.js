@@ -228,7 +228,7 @@ async function getprofile(req, res) {
 		
 		const transactions = await Transaction.find({
          $or: [{ user_id: token.sub }, { receiver_id: token.sub }],
-      })
+		})
          .sort({ createdAt: -1 })
          .limit(3);
 		
