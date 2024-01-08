@@ -82,6 +82,7 @@ async function store(req, res) {
          user_id: token.sub,
          receiver_id: token.sub,
          type: selected.type_name,
+         type_money: "outgoing",
          icon: selected.icon,
          icon_dark: selected.icon_dark,
          createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),

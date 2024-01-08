@@ -33,6 +33,7 @@ async function store(req, res) {
          receiver_id: token.sub,
          amount: req.body.amount,
          type: "Deposit",
+			type_money: "ingoing",
          icon: "https://cdn.tokoqu.io/image/deposit.png",
          icon_dark: "https://cdn.tokoqu.io/image/dark-deposit.png",
          createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),

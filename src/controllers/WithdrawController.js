@@ -34,6 +34,7 @@ async function store(req, res) {
          amount: req.body.amount,
          rekening: req.body.rekening,
          type: "Withdraw",
+			type_money: "outgoing",
          status: "Pending",
          icon: "https://cdn.tokoqu.io/image/tarik-tunai.png",
 			icon_dark: "https://cdn.tokoqu.io/image/dark-tarik-tunai.png",

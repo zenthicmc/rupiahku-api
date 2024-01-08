@@ -34,6 +34,7 @@ async function store(req, res) {
          amount: req.body.amount,
          status: "Success",
          type: "Transfer",
+			type_money: "outgoing",
          icon: "https://cdn.tokoqu.io/image/transfer.png",
 			icon_dark: "https://cdn.tokoqu.io/image/dark-transfer.png",
 			createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),

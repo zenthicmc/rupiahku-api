@@ -176,6 +176,7 @@ async function pay(req, res) {
 				user_id: token.sub,
 				receiver_id: token.sub,
 				type: icon.type_name,
+            type_money: "outgoing",
 				icon: icon.icon,
 				icon_dark: icon.icon_dark,
 				status: "Success",
