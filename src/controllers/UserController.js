@@ -226,10 +226,11 @@ async function getprofile(req, res) {
 		const token = decodeJwt(req)
 		const user = await User.findById(token.sub).select('name email nohp kelamin saldo image createdAt')
 		
-		const transactions = await Transaction
-			.find({user_id: token.sub})
-			.sort({createdAt: -1})
-			.limit(3)
+		const transactions = await Transaction.find({
+         $or: [{ user_id: token.sub }, { receiver_id: token.sub }],
+      })
+         .sort({ createdAt: -1 })
+         .limit(3);
 		
 		return res.json({
 			success: true,
