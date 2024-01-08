@@ -12,6 +12,7 @@ const axios = require('axios')
 const hmacSHA256 = require('crypto-js/hmac-sha256'); 
 const hex = require('crypto-js/enc-hex');
 const MD5 = require('crypto-js/md5');
+const moment = require("moment");
 
 async function show(req, res) {
 	try {
@@ -27,6 +28,17 @@ async function show(req, res) {
 		if(req.query.status == "Pending") data = data.filter(item => item.status == "Pending")
 		else if(req.query.status == "Success") data = data.filter(item => item.status == "Success")
 		else if(req.query.status == "Failed") data = data.filter(item => item.status == "Failed")
+
+		// filter by all, today, week, month, year
+		const start = moment().locale("id").format("YYYY-MM-DD");
+		const end_week = moment().locale("id").add(7, 'days').format("YYYY-MM-DD");
+		const end_month = moment().locale("id").add(1, 'months').format("YYYY-MM-DD");
+		const end_year = moment().locale("id").add(1, 'years').format("YYYY-MM-DD");
+
+		if(req.query.date == "today") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") == start)
+		else if(req.query.date == "week") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_week)
+		else if(req.query.date == "month") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_month)
+		else if(req.query.date == "year") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_year)
 		
 		return res.json({
 			success: true,
