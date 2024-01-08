@@ -35,7 +35,8 @@ async function show(req, res) {
 		const end_month = moment().locale("id").add(1, 'months').format("YYYY-MM-DD");
 		const end_year = moment().locale("id").add(1, 'years').format("YYYY-MM-DD");
 
-		if(req.query.date == "today") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") == start)
+		if(req.query.date == "all") data = data
+		else if(req.query.date == "today") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") == start)
 		else if(req.query.date == "week") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_week)
 		else if(req.query.date == "month") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_month)
 		else if(req.query.date == "year") data = data.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_year)
