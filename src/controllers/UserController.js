@@ -256,9 +256,6 @@ async function getStats(req, res) {
 
 		// filter by all, today, week, month, year
 		const start = moment().locale("id").format("YYYY-MM-DD");
-		const end_week = moment().locale("id").add(7, 'days').format("YYYY-MM-DD");
-		const end_month = moment().locale("id").add(1, 'months').format("YYYY-MM-DD");
-		const end_year = moment().locale("id").add(1, 'years').format("YYYY-MM-DD");
 
 		if(req.query.date == "all") {
 			uangMasuk = uangMasuk
@@ -269,16 +266,16 @@ async function getStats(req, res) {
 			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") == start)
 		}
 		else if(req.query.date == "week") {
-			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_week)
-			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_week)
+			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") >= moment(start).subtract(7, 'days').format("YYYY-MM-DD"))
+			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") >= moment(start).subtract(7, 'days').format("YYYY-MM-DD"))
 		}
 		else if(req.query.date == "month") {
-			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_month)
-			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_month)
+			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") >= moment(start).subtract(1, 'months').format("YYYY-MM-DD"))
+			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") >= moment(start).subtract(1, 'months').format("YYYY-MM-DD"))
 		}
 		else if(req.query.date == "year") {
-			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_year)
-			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_year)
+			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") >= moment(start).subtract(1, 'years').format("YYYY-MM-DD"))
+			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") >= moment(start).subtract(1, 'years').format("YYYY-MM-DD"))
 		}
 
 		const totalUangMasuk = uangMasuk.reduce((total, item) => {
