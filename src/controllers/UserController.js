@@ -12,6 +12,7 @@ const axios = require('axios')
 const hmacSHA256 = require('crypto-js/hmac-sha256'); 
 const hex = require('crypto-js/enc-hex');
 const sendEmail = require('../helpers/sendEmail')
+const moment = require("moment");
 
 async function show(req, res) {
 	try {
@@ -250,8 +251,35 @@ async function getprofile(req, res) {
 async function getStats(req, res) {
 	try {
 		const token = decodeJwt(req)
-		const uangMasuk = await Transaction.find({receiver_id: token.sub, status: 'Success'})
-		const uangKeluar = await Transaction.find({user_id: token.sub, status: 'Success', type: {$ne: 'Deposit'}})
+		let uangMasuk = await Transaction.find({receiver_id: token.sub, status: 'Success'})
+		let uangKeluar = await Transaction.find({user_id: token.sub, status: 'Success', type: {$ne: 'Deposit'}})
+
+		// filter by all, today, week, month, year
+		const start = moment().locale("id").format("YYYY-MM-DD");
+		const end_week = moment().locale("id").add(7, 'days').format("YYYY-MM-DD");
+		const end_month = moment().locale("id").add(1, 'months').format("YYYY-MM-DD");
+		const end_year = moment().locale("id").add(1, 'years').format("YYYY-MM-DD");
+
+		if(req.query.date == "all") {
+			uangMasuk = uangMasuk
+			uangKeluar = uangKeluar
+		}
+		else if(req.query.date == "today") {
+			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") == start)
+			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") == start)
+		}
+		else if(req.query.date == "week") {
+			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_week)
+			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_week)
+		}
+		else if(req.query.date == "month") {
+			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_month)
+			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_month)
+		}
+		else if(req.query.date == "year") {
+			uangMasuk = uangMasuk.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_year)
+			uangKeluar = uangKeluar.filter(item => moment(item.createdAt).locale("id").format("YYYY-MM-DD") <= end_year)
+		}
 
 		const totalUangMasuk = uangMasuk.reduce((total, item) => {
 			return total + item.amount
@@ -260,6 +288,7 @@ async function getStats(req, res) {
 		const totalUangKeluar = uangKeluar.reduce((total, item) => {
 			return total + item.amount
 		}, 0)
+		
 		
 		return res.json({
 			success: true,
