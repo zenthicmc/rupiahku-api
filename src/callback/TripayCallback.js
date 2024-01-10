@@ -56,7 +56,7 @@ async function handle(req, res) {
 					result.status = 'Success'
 					result.save()
 
-					const user = await User.findOne({ _id: result.user_id })
+					const user = await User.findOne({ _id: result.receiver_id });
 					user.saldo = user.saldo + result.amount
 					user.save()
 
