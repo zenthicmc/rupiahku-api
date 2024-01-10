@@ -80,7 +80,6 @@ async function store(req, res) {
       const selected = icons.find((icon) => icon.type === req.body.type);
       const data = {
          user_id: token.sub,
-         receiver_id: token.sub,
          type: selected.type_name,
          type_money: "outgoing",
          icon: selected.icon,

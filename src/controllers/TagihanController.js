@@ -174,7 +174,6 @@ async function pay(req, res) {
 			// create transaction
 			const saveDb = await Transaction.create({
 				user_id: token.sub,
-				receiver_id: token.sub,
 				type: icon.type_name,
             type_money: "outgoing",
 				icon: icon.icon,
