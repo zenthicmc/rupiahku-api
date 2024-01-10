@@ -29,7 +29,7 @@ async function store(req, res) {
 		if(req.body.amount > 1000000) return response400(res, "Maksimal deposit Rp. 1.000.000")
 
 		const data = {
-         user_id: token.sub,
+			receiver_id: token.sub,
          amount: req.body.amount,
          type: "Deposit",
 			type_money: "ingoing",
