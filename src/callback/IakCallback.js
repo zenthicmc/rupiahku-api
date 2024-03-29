@@ -36,8 +36,8 @@ async function handle(req, res) {
             receiver_id: user._id,
             title: `Pembayaran ${capitalize(transaction.type)} Berhasil`,
             desc: `Pembayaran ${transaction.type} anda sebesar Rp ${amount} telah berhasil diverifikasi.`,
-            icon: "https://cdn.tokoqu.io/image/success.png",
-            icon_dark: "https://cdn.tokoqu.io/image/dark-success.png",
+            icon: "https://cdn.rupiahku.pro/image/success.png",
+            icon_dark: "https://cdn.rupiahku.pro/image/dark-success.png",
 				createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
          });
 
@@ -50,8 +50,8 @@ async function handle(req, res) {
             receiver_id: user._id,
             title: `Pembayaran ${capitalize(transaction.type)} Gagal`,
             desc: `Pembayaran ${transaction.type} anda sebesar Rp ${amount} gagal dilakukan.`,
-            icon: "https://cdn.tokoqu.io/image/cancel.png",
-            icon_dark: "https://cdn.tokoqu.io/image/dark-cancel.png",
+            icon: "https://cdn.rupiahku.pro/image/cancel.png",
+            icon_dark: "https://cdn.rupiahku.pro/image/dark-cancel.png",
 				createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
          });
 		}

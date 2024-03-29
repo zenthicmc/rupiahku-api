@@ -67,8 +67,8 @@ async function handle(req, res) {
                   receiver_id: user._id,
                   title: `Deposit Berhasil`,
                   desc: `Deposit anda sebesar Rp ${amount} telah berhasil diverifikasi.`,
-                  icon: "https://cdn.tokoqu.io/image/success.png",
-                  icon_dark: "https://cdn.tokoqu.io/image/dark-success.png",
+                  icon: "https://cdn.rupiahku.pro/image/success.png",
+                  icon_dark: "https://cdn.rupiahku.pro/image/dark-success.png",
 						createAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
                });
 					
@@ -86,8 +86,8 @@ async function handle(req, res) {
                   receiver_id: user._id,
                   title: `Pembayaran Kadaluarsa`,
                   desc: `Pembayaran untuk deposit anda sebesar Rp ${amount} telah kadaluarsa.`,
-                  icon: "https://cdn.tokoqu.io/image/pending.png",
-                  icon_dark: "https://cdn.tokoqu.io/image/dark-pending.png",
+                  icon: "https://cdn.rupiahku.pro/image/pending.png",
+                  icon_dark: "https://cdn.rupiahku.pro/image/dark-pending.png",
 						createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
                });
 					
@@ -101,8 +101,8 @@ async function handle(req, res) {
                   receiver_id: user._id,
                   title: `Pembayaran Gagal`,
                   desc: `Pembayaran untuk deposit anda sebesar Rp ${amount} gagal.`,
-                  icon: "https://cdn.tokoqu.io/image/cancel.png",
-                  icon_dark: "https://cdn.tokoqu.io/image/dark-cancel.png",
+                  icon: "https://cdn.rupiahku.pro/image/cancel.png",
+                  icon_dark: "https://cdn.rupiahku.pro/image/dark-cancel.png",
 						createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
                });
 					break;
