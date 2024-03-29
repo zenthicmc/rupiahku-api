@@ -71,10 +71,10 @@ async function store(req, res) {
 
       if (req.body.kelamin == "Male")
          data.image =
-            "https://cdn.tokoqu.io/image/9febb626-a04c-4661-99ac-45a00d8d7f07.webp";
+            "https://cdn.rupiahku.pro/image/bdcfa5f0-7e27-4fb8-9f06-ee87acaa3491.webp";
       else
          data.image =
-            "https://cdn.tokoqu.io/image/ca93faa9-fb82-4945-b1f8-02001a00b7a6.webp";
+            "https://cdn.rupiahku.pro/image/74088f11-77d5-4c24-a6a7-983ebca67521.webp";
 
       // generate 6 digit random number
       const pin = Math.floor(100000 + Math.random() * 900000);
