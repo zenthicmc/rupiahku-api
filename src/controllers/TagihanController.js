@@ -117,8 +117,8 @@ async function pay(req, res) {
       const icon = {
          type: "tagihan",
          type_name: "Tagihan",
-         icon: "https://cdn.tokoqu.io/image/tagihan.png",
-         icon_dark: "https://cdn.tokoqu.io/image/dark-tagihan.png",
+         icon: "https://cdn.rupiahku.pro/image/tagihan.png",
+         icon_dark: "https://cdn.rupiahku.pro/image/dark-tagihan.png",
       };
 
       const user = await User.findById(token.sub);

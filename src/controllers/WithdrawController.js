@@ -36,8 +36,8 @@ async function store(req, res) {
          type: "Withdraw",
 			type_money: "outgoing",
          status: "Pending",
-         icon: "https://cdn.tokoqu.io/image/tarik-tunai.png",
-			icon_dark: "https://cdn.tokoqu.io/image/dark-tarik-tunai.png",
+         icon: "https://cdn.rupiahku.pro/image/tarik-tunai.png",
+			icon_dark: "https://cdn.rupiahku.pro/image/dark-tarik-tunai.png",
       };
 
 		const user = await User.findById(token.sub)
@@ -54,8 +54,8 @@ async function store(req, res) {
             receiver_id: token.sub,
             title: `Withdraw Dalam Proses`,
             desc: `Withdraw sebesar Rp. ${amount} sedang dalam proses. Silahkan cek secara berkala status withdraw anda.`,
-            icon: "https://cdn.tokoqu.io/image/pending.png",
-            icon_dark: "https://cdn.tokoqu.io/image/dark-pending.pngg",
+            icon: "https://cdn.rupiahku.pro/image/pending.png",
+            icon_dark: "https://cdn.rupiahku.pro/image/dark-pending.pngg",
          });
 
 			return res.json({

@@ -2,17 +2,17 @@ const { createTransport } = require("nodemailer");
 const emailTemplate = require("./emailTemplate");
 
 const transporter = createTransport({
-   host: "mail.himatikauty.com",
+   host: "mail.himatikauty.or.id",
    port: 465,
    auth: {
-      user: "rupiahku@himatikauty.com",
-      pass: "@Himatikauty999",
+      user: "rupiahku@himatikauty.or.id",
+      pass: "^5f2GW_!lRuB",
    },
 });
 
 const sendEmail = async (name, email, code) => {
 	const mailOptions = {
-      from: "rupiahku@himatikauty.com",
+      from: "rupiahku@himatikauty.or.id",
       to: email,
       subject: `Verifikasi akun anda`,
       html: emailTemplate(name, email, code)

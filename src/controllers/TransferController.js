@@ -35,8 +35,8 @@ async function store(req, res) {
          status: "Success",
          type: "Transfer",
 			type_money: "outgoing",
-         icon: "https://cdn.tokoqu.io/image/transfer.png",
-			icon_dark: "https://cdn.tokoqu.io/image/dark-transfer.png",
+         icon: "https://cdn.rupiahku.pro/image/transfer.png",
+			icon_dark: "https://cdn.rupiahku.pro/image/dark-transfer.png",
 			createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
       };
 
@@ -65,8 +65,8 @@ async function store(req, res) {
 				receiver_id: receiver._id,
 				title: `Transfer Diterima`,
 				desc: `Anda menerima transfer sebesar Rp ${amount} dari ${user.name}.`,
-				icon: "https://cdn.tokoqu.io/image/success.png",
-				icon_dark: "https://cdn.tokoqu.io/image/dark-success.png",
+				icon: "https://cdn.rupiahku.pro/image/success.png",
+				icon_dark: "https://cdn.rupiahku.pro/image/dark-success.png",
 				createdAt: moment().locale("id").format("YYYY-MM-DD HH:mm:ss"),
 			})
 
